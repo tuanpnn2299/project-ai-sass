@@ -3,7 +3,6 @@
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
-
 interface MarkdownResponseProps {
   content: string;
 }
@@ -12,9 +11,9 @@ const MarkdownResponse: React.FC<MarkdownResponseProps> = ({ content }) => {
   return (
     <ReactMarkdown
       components={{
-        code({ node, className, children, ...props }) {
+        code({ node, inline, className, children, ...props }) {
           const match = /language-(\w+)/.exec(className || "");
-          return match ? (
+          return !inline && match ? (
             <SyntaxHighlighter
               {...props}
               style={atomDark}
