@@ -12,9 +12,9 @@ const MarkdownResponse: React.FC<MarkdownResponseProps> = ({ content }) => {
   return (
     <ReactMarkdown
       components={{
-        code({ node, inlist, className, children, ...props }) {
+        code({ node, className, children, ...props }) {
           const match = /language-(\w+)/.exec(className || "");
-          return !inlist && match ? (
+          return match ? (
             <SyntaxHighlighter
               {...props}
               style={atomDark}
